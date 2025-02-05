@@ -24,7 +24,8 @@ class _MyAppState extends State<MyApp> {
     var apiBaseUrl = "http://finifyapi.redltd.tech:8000/";
     var module = "JW9tc0ByZWRsdGQl";
     var basicToken = "Basic ODgwMTY3NDg4NjY2MDo2YzkyMTk4NzdmYjBhOTMxNzliNWJkNTZkMmZhNGIzMjliZDA2NTZhMzY0YjdmMzMxMTgwNDc1ODY5Y2VkZmE0";
-    RilacSplitPayment.config(apiBaseUrl: apiBaseUrl, basicToken: basicToken, apiModuleKey: module);
+    var number = "8801674886660";
+    RilacSplitPayment.config(apiBaseUrl: apiBaseUrl, basicToken: basicToken, apiModuleKey: module, phoneNumber: number);
     super.initState();
   }
 
@@ -64,6 +65,12 @@ class _MyAppState extends State<MyApp> {
                 var result = await RilacSplitPayment().updateSingleCustomerInfo(customerId: 2, splitCustomerDetails: splitCustomerDetails);
                 debugPrint("result: ${result.toString()}");
               }, child: const Text("Step 2.1: Update Single Customer Details")),
+
+
+              ElevatedButton(onPressed: () async{
+                var result = await RilacSplitPayment().getSplitCustomerList();
+                debugPrint("result: ${result.toString()}");
+              }, child: const Text("Step 2.2: Get Customer details list")),
 
             ],
           ),
