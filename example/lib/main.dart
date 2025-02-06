@@ -79,6 +79,12 @@ class _MyAppState extends State<MyApp> {
                 debugPrint("result: ${result.toString()}");
               }, child: const Text("Step 3: Submit payment")),
 
+
+              ElevatedButton(onPressed: () async{
+                var result = await RilacSplitPayment().cleanSplitPayment();
+                debugPrint("result: ${result.toString()}");
+              }, child: const Text("Step 4: Clean Split Payment")),
+
             ],
           ),
         ),

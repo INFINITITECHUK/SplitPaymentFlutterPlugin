@@ -70,4 +70,9 @@ class HiveFunctions{
     }
   }
 
+  static Future<void> cleanSplitCustomer() async {
+    Box<SplitCustomerInfo> box = Hive.box<SplitCustomerInfo>(hiveBoxNameSplitCustomer);
+    await box.clear();
+  }
+
 }

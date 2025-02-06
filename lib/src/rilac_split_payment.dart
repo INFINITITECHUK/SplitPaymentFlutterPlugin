@@ -156,4 +156,11 @@ class RilacSplitPayment extends Functions {
     }
     throw UnimplementedError();
   }
+
+  @override
+  Future cleanSplitPayment() async{
+    await HiveFunctions.cleanSplitCustomer();
+    await SharedPrefs.clearSplitPayment();
+    return returnResponse(isSuccess: true, statusCode: 200, message: "Successfully cleaned split payment");
+  }
 }

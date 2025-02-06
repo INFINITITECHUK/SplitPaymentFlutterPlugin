@@ -48,6 +48,14 @@ class SharedPrefs {
     });
   }
 
+  static Future<void> clearSplitPayment() async {
+    SharedPreferences.getInstance().then((prefs) async => {
+      await prefs.remove("split_amount"),
+      await prefs.remove("split_number"),
+      await prefs.remove("split_invoice"),
+    });
+  }
+
   static Future<double> getAmount() async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     return pref.getDouble("split_amount") ?? 0;

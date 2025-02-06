@@ -20,6 +20,8 @@ abstract class Functions {
   Future<dynamic> getSplitCustomerList();
 
   Future<dynamic> submitPayment({required int customerId, required String pin});
+
+  Future<dynamic> cleanSplitPayment();
 }
 
 class GlobalFunctions{
