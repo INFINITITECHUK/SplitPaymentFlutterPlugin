@@ -25,7 +25,8 @@ class _MyAppState extends State<MyApp> {
     var module = "JW9tc0ByZWRsdGQl";
     var basicToken = "Basic ODgwMTY3NDg4NjY2MDo2YzkyMTk4NzdmYjBhOTMxNzliNWJkNTZkMmZhNGIzMjliZDA2NTZhMzY0YjdmMzMxMTgwNDc1ODY5Y2VkZmE0";
     var number = "8801674886660";
-    RilacSplitPayment.config(apiBaseUrl: apiBaseUrl, basicToken: basicToken, apiModuleKey: module, phoneNumber: number);
+    RilacSplitPayment.config(apiBaseUrl: apiBaseUrl, basicToken: basicToken, apiModuleKey: module, keyword: "PMNT", phoneNumber: number,
+      userDeviceId: "*", userAppVersion: "*", userPhoneBrand: "*", usrPhoneOs: "*", userOsVersion: "*");
     super.initState();
   }
 
@@ -50,8 +51,8 @@ class _MyAppState extends State<MyApp> {
 
               ElevatedButton(onPressed: () async{
                 List<SplitPaymentCustomerDetailsModel> splitCustomerDetails = [];
-                splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "8801630337757", splitAmount: 20));
-                splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456788", splitAmount: 30));
+                splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "8801763643634", splitAmount: 20));
+                splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "8801630337757", splitAmount: 30));
                 splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456777", splitAmount: 35));
                 splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456666", splitAmount: 15));
 
@@ -74,7 +75,7 @@ class _MyAppState extends State<MyApp> {
 
 
               ElevatedButton(onPressed: () async{
-                var result = await RilacSplitPayment().submitPayment(customerId: 1, pin: "112233");
+                var result = await RilacSplitPayment().submitPayment(customerId: 2, pin: "112233");
                 debugPrint("result: ${result.toString()}");
               }, child: const Text("Step 3: Submit payment")),
 

@@ -36,7 +36,7 @@ class ApiRepository{
   }
 
 
-  Future<TransferResponse> transfer(TransferBody transferBody, String token) async {
+  Future<TransferResponse> transfer(TransferBody transferBody) async {
     try {
       Response response = await DioClient().dio.post(ApiUrl.transferUrl,
           data: transferBody.toJson(),
@@ -58,7 +58,7 @@ class ApiRepository{
     }
   }
 
-  Future<TransactionResultResponse> getTransactionResult(TransactionResultBody transactionResultBody, String token) async {
+  Future<TransactionResultResponse> getTransactionResult(TransactionResultBody transactionResultBody) async {
     try {
       Response response =
       await DioClient().dio.post(ApiUrl.getTransactionResultUrl,

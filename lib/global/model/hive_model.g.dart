@@ -8,7 +8,7 @@ part of 'hive_model.dart';
 
 class SplitCustomerInfoAdapter extends TypeAdapter<SplitCustomerInfo> {
   @override
-  final int typeId = 0;
+  final int typeId = 173;
 
   @override
   SplitCustomerInfo read(BinaryReader reader) {

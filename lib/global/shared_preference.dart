@@ -12,13 +12,21 @@ class SharedPrefs {
     });
   }
 
-  static saveConfig({required String baseUrl, required String module, required String token, required String phoneNumber, required String keyword}) async {
+  static saveConfig({required String baseUrl, required String module, required String token, required String phoneNumber,
+    required String keyword, required String userDeviceId, required String userAppVersion, required String userPhoneBrand,
+    required String usrPhoneOs, required String userOsVersion}) async {
     SharedPreferences.getInstance().then((prefs) async => {
       await prefs.setString("split_baseURL", baseUrl),
       await prefs.setString("split_module", module),
       await prefs.setString("split_token", token),
       await prefs.setString("split_phone_number", phoneNumber),
       await prefs.setString("split_keyword", token),
+
+      await prefs.setString("split_userDeviceId", userDeviceId),
+      await prefs.setString("split_userAppVersion", userAppVersion),
+      await prefs.setString("split_userPhoneBrand", userPhoneBrand),
+      await prefs.setString("split_usrPhoneOs", usrPhoneOs),
+      await prefs.setString("split_userOsVersion", userOsVersion),
     });
   }
 

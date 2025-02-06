@@ -14,12 +14,19 @@ class RilacSplitPayment extends Functions {
 
   RilacSplitPayment();
 
-  RilacSplitPayment.config({required String apiBaseUrl, required String basicToken, required String apiModuleKey, required String phoneNumber, String keyword = "PMNT"}) {
+  RilacSplitPayment.config({required String apiBaseUrl, required String basicToken, required String apiModuleKey,
+    required String phoneNumber, String keyword = "PMNT", required String userDeviceId, required String userAppVersion,
+    required String userPhoneBrand, required String usrPhoneOs, required String userOsVersion,}) {
     globalBaseUrl = apiBaseUrl;
     globalAccessToken = basicToken;
     globalModuleKey = apiModuleKey;
     accountNumber = phoneNumber;
     amlKeyword = keyword;
+    deviceId = userDeviceId;
+    appVersion = userAppVersion;
+    phoneBrand = userPhoneBrand;
+    phoneOs = usrPhoneOs;
+    osVersion = userOsVersion;
 
     SharedPrefs.getBaseURL().then((value) =>
     {
@@ -30,6 +37,11 @@ class RilacSplitPayment extends Functions {
           token: basicToken,
           phoneNumber: phoneNumber,
           keyword: keyword,
+          userDeviceId: userDeviceId,
+          userAppVersion: userAppVersion,
+          userPhoneBrand: userPhoneBrand,
+          usrPhoneOs: usrPhoneOs,
+          userOsVersion: userOsVersion,
         ),
       }
     });
@@ -138,13 +150,7 @@ class RilacSplitPayment extends Functions {
     }else if(customerDetails.status == 2){
       return returnResponse(isSuccess: false, statusCode: 400, message: "This customer has already been paid");
     }else if(customerDetails.status != 2){
-      var body = await GlobalFunctions().getAmlBody(customerDetails, pin);
-      var amlResponse = await ApiRepository().getAmlCheck(body);
-      if(amlResponse.responseCode == 100){
-        return amlResponse.toJson();
-      }else{
-        return returnResponse(isSuccess: false, statusCode: amlResponse.responseCode ?? 400, message: amlResponse.responseDescription ?? "AML check failed");
-      }
+      return await GlobalFunctions().getAmlCheck(customerDetails, pin);
     }else{
       return returnResponse(isSuccess: false, statusCode: 400, message: "Something went wrong");
     }

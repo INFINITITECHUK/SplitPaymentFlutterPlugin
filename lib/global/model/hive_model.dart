@@ -1,7 +1,7 @@
 import 'package:hive/hive.dart';
 part 'hive_model.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 173)
 class SplitCustomerInfo {
 
   @HiveField(0)
