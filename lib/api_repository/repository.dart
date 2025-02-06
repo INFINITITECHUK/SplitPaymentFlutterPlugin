@@ -31,7 +31,7 @@ class ApiRepository{
         errorMessage = DioExceptions.fromDioError(e).toString();
       }
       debugPrint(errorMessage);
-      return GetAmlResponseModel(responseCode: null);
+      return GetAmlResponseModel(responseCode: null, responseDescription: errorMessage);
     }
   }
 

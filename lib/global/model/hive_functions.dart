@@ -58,4 +58,16 @@ class HiveFunctions{
     }
   }
 
+
+  static Future<SplitCustomerInfo?> getCustomerDetailsById(int customerId) async {
+    Box<SplitCustomerInfo> box = Hive.box<SplitCustomerInfo>(hiveBoxNameSplitCustomer);
+    // Find the index of the customer entry
+    int index = box.values.toList().indexWhere((customer) => customer.id == customerId);
+    if (index != -1) {
+      return box.values.toList()[index];
+    }else{
+      return null;
+    }
+  }
+
 }

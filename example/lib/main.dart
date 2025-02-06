@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
 
               ElevatedButton(onPressed: () async{
                 List<SplitPaymentCustomerDetailsModel> splitCustomerDetails = [];
-                splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456789", splitAmount: 20));
+                splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "8801630337757", splitAmount: 20));
                 splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456788", splitAmount: 30));
                 splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456777", splitAmount: 35));
                 splitCustomerDetails.add(SplitPaymentCustomerDetailsModel(customerNumber: "123456666", splitAmount: 15));
@@ -71,6 +71,12 @@ class _MyAppState extends State<MyApp> {
                 var result = await RilacSplitPayment().getSplitCustomerList();
                 debugPrint("result: ${result.toString()}");
               }, child: const Text("Step 2.2: Get Customer details list")),
+
+
+              ElevatedButton(onPressed: () async{
+                var result = await RilacSplitPayment().submitPayment(customerId: 1, pin: "112233");
+                debugPrint("result: ${result.toString()}");
+              }, child: const Text("Step 3: Submit payment")),
 
             ],
           ),

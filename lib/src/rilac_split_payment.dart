@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:rilac_split_payment/api_repository/repository.dart';
 import 'package:rilac_split_payment/global/functions.dart';
 import 'package:rilac_split_payment/global/model/hive_functions.dart';
 import 'package:rilac_split_payment/global/model/hive_model.dart';
@@ -130,8 +131,23 @@ class RilacSplitPayment extends Functions {
     return returnResponse(isSuccess: true, statusCode: 200, payload: jsonPayload, message: "Request successful");
   }
   @override
-  Future submitPayment({required int customerId}) async{
-    // TODO: implement submitPayment
+  Future<Map<String, dynamic>> submitPayment({required int customerId, required String pin}) async{
+    var customerDetails = await HiveFunctions.getCustomerDetailsById(customerId);
+    if(customerDetails == null){
+      return returnResponse(isSuccess: false, statusCode: 404, message: "Customer not found");
+    }else if(customerDetails.status == 2){
+      return returnResponse(isSuccess: false, statusCode: 400, message: "This customer has already been paid");
+    }else if(customerDetails.status != 2){
+      var body = await GlobalFunctions().getAmlBody(customerDetails, pin);
+      var amlResponse = await ApiRepository().getAmlCheck(body);
+      if(amlResponse.responseCode == 100){
+        return amlResponse.toJson();
+      }else{
+        return returnResponse(isSuccess: false, statusCode: amlResponse.responseCode ?? 400, message: amlResponse.responseDescription ?? "AML check failed");
+      }
+    }else{
+      return returnResponse(isSuccess: false, statusCode: 400, message: "Something went wrong");
+    }
     throw UnimplementedError();
   }
 }
