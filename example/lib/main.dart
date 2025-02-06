@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
 
 
               ElevatedButton(onPressed: () async{
-                var result = await RilacSplitPayment().submitPayment(customerId: 2, pin: "112233");
+                var result = await RilacSplitPayment().submitPayment(customerId: 1, pin: "123456");
                 debugPrint("result: ${result.toString()}");
               }, child: const Text("Step 3: Submit payment")),
 
