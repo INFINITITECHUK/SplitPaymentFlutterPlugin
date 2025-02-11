@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:rilac_split_payment/api_repository/repository.dart';
 import 'package:rilac_split_payment/global/functions.dart';
 import 'package:rilac_split_payment/global/model/hive_functions.dart';
 import 'package:rilac_split_payment/global/model/hive_model.dart';
@@ -9,6 +8,8 @@ import 'package:rilac_split_payment/global/model/splitPaymentCustomerDetailsMode
 import 'package:rilac_split_payment/global/shared_preference.dart';
 
 import '../global/global_variable.dart';
+
+//new fix
 
 class RilacSplitPayment extends Functions {
 
