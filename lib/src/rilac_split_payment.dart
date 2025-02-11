@@ -126,7 +126,7 @@ class RilacSplitPayment extends Functions {
         totalSplitAmount += split.amount;
       }
       // Validate that total split amount matches the original amount
-      if (totalSplitAmount != amount) {
+      if (totalSplitAmount > amount) {
         return returnResponse(isSuccess: false, statusCode: 400, message: "Total split amount (${totalSplitAmount.toStringAsFixed(2)}) must equal the original amount (${amount.toStringAsFixed(2)}).");
       }
       // Convert List<Model> to List<Map<String, dynamic>>
