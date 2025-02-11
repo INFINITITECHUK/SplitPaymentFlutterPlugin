@@ -4,6 +4,8 @@ import 'package:rilac_split_payment/global/model/splitPaymentCustomerDetailsMode
 
 import 'package:rilac_split_payment/rilac_split_payment.dart';
 
+//dev version: 1.0.0
+
 void main() {
   RilacSplitPayment.initialize();
   runApp(const MyApp());

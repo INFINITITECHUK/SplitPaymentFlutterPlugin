@@ -9,8 +9,6 @@ import 'package:rilac_split_payment/global/shared_preference.dart';
 
 import '../global/global_variable.dart';
 
-//new fix
-
 class RilacSplitPayment extends Functions {
 
   RilacSplitPayment();
