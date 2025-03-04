@@ -9,11 +9,11 @@ import 'package:rilac_split_payment/global/shared_preference.dart';
 
 import '../global/global_variable.dart';
 
-class RilacSplitPayment extends Functions {
+class SplitPayment extends Functions {
 
-  RilacSplitPayment();
+  SplitPayment();
 
-  RilacSplitPayment.config({required String apiBaseUrl, required String basicToken, required String apiModuleKey,
+  SplitPayment.config({required String apiBaseUrl, required String basicToken, required String apiModuleKey,
     required String phoneNumber, String keyword = "PMNT", required String userDeviceId, required String userAppVersion,
     required String userPhoneBrand, required String usrPhoneOs, required String userOsVersion,}) {
     globalBaseUrl = apiBaseUrl;
@@ -54,7 +54,7 @@ class RilacSplitPayment extends Functions {
   }
 
   @override
-  Future<dynamic> setupSplitPayment({required double amount, required int splitNumber, required String invoiceId}) async {
+  Future<dynamic> initiateSplitPayment({required double amount, required int splitNumber, required String invoiceId}) async {
     try {
       // Validate inputs
       if (amount <= 0 || splitNumber <= 0) {
@@ -78,7 +78,7 @@ class RilacSplitPayment extends Functions {
   }
 
   @override
-  Future<Map<String, dynamic>> setupCustomSplitPayment({required List<SplitPaymentCustomerDetailsModel> splitCustomerDetails}) async {
+  Future<Map<String, dynamic>> submitCustomSplitPaymentInfo({required List<SplitPaymentCustomerDetailsModel> splitCustomerDetails}) async {
     double amount = await SharedPrefs.getAmount();
     int splitNumber = await SharedPrefs.getSplitNumber();
     try {
@@ -106,7 +106,7 @@ class RilacSplitPayment extends Functions {
   }
 
   @override
-  Future<Map<String, dynamic>> updateSingleCustomerInfo({required int customerId, required SplitPaymentCustomerDetailsModel splitCustomerDetails}) async{
+  Future<Map<String, dynamic>> updateCustomSplitPaymentInfo({required int customerId, required SplitPaymentCustomerDetailsModel splitCustomerDetails}) async{
     try {
       var isUpdated = await HiveFunctions.updateSplitCustomer(customerId, splitCustomerDetails);
       if(!isUpdated){
